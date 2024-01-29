@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 12:58:18 by ezhou             #+#    #+#             */
-/*   Updated: 2024/01/29 16:39:53 by ezhou            ###   ########.fr       */
+/*   Updated: 2024/01/29 17:47:02 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,13 @@ typedef struct s_program
 	pthread_mutex_t	write_lock;
 	t_philo			*philos;
 }					t_program;
+
+int		ft_error_check(int argc, char **argv);
+int		ft_isdigit(int c);
+void	*ft_calloc(size_t count, size_t size);
+long	ft_atoi(const char *nptr);
+size_t	ft_strlen(const char *s);
+int		ft_usleep(size_t milliseconds);
+size_t	get_current_time(void);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:05:16 by ezhou             #+#    #+#             */
-/*   Updated: 2024/01/29 16:40:55 by ezhou            ###   ########.fr       */
+/*   Updated: 2024/01/29 16:55:18 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,16 @@ long	ft_atoi(const char *nptr)
 		result = result * 10 + (nptr[index++] - '0');
 	}
 	return (result * minus);
+}
+
+size_t	ft_strlen(const char *s)
+{
+	size_t	index;
+
+	index = 0;
+	if (!s || *s == 0)
+		return (0);
+	while (s[index])
+		index++;
+	return (index);
 }
