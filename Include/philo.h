@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 12:58:18 by ezhou             #+#    #+#             */
-/*   Updated: 2024/02/07 12:15:46 by ezhou            ###   ########.fr       */
+/*   Updated: 2024/02/07 17:35:24 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define RED_TEXT "\x1b[31m"
 # define BLUE_TEXT "\x1b[34m"
 # define GREEN_TEXT "\x1b[32m"
+# define DARK_GREEN_TEXT "\033[0;32m"
 # define RESET_TEXT "\x1b[0m"
 # define ORANGE_TEXT "\x1b[38;2;255;165;0m"
 
@@ -87,10 +88,15 @@ int					ft_usleep(size_t milliseconds);
 size_t				get_current_time(void);
 size_t				ft_current_run_time(size_t old_time);
 
-// TERMINAL PRINTS
+// ACTIONS
 void				ft_is_thinking(t_philo *philo);
 void				ft_is_taking_fork(t_philo *philo);
 void				ft_is_sleeping(t_philo *philo);
 void				ft_is_dead(t_philo *philo);
+void				ft_is_eating(t_philo *philo);
+
+
+// VERIFICATION
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 12:58:03 by ezhou             #+#    #+#             */
-/*   Updated: 2024/02/07 12:16:09 by ezhou            ###   ########.fr       */
+/*   Updated: 2024/02/07 17:37:52 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_initialize_one(t_philo *philo, t_params *params, int id,
 		philo->l_fork = &(forks[id + 1]);
 	else
 		philo->l_fork = &(forks[0]);
-	philo->initial_time = param->time;
+	philo->initial_time = params->time;
 	philo->eating = 0;
 	philo->meals_eaten = 0;
 	philo->last_meal = 0;
@@ -55,14 +55,14 @@ int	ft_initialize_forks(pthread_mutex_t *forks, int quantity)
 }
 
 void	ft_initialize_struct(t_philo *philos, t_params *params,
-		pthread_mutex_t *forks, size_t time)
+		pthread_mutex_t *forks)
 {
 	int	index;
 
 	index = 0;
 	while (index < params->quantity)
 	{
-		ft_initialize_one(&(philos[index]), params, index, forks, time);
+		ft_initialize_one(&(philos[index]), params, index, forks);
 		index++;
 	}
 }

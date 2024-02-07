@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:49:02 by ezhou             #+#    #+#             */
-/*   Updated: 2024/02/07 12:16:50 by ezhou            ###   ########.fr       */
+/*   Updated: 2024/02/07 17:37:28 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ void	ft_get_params(t_params *params, char **argv)
 
 int	main(int argc, char **argv)
 {
-	t_philo		*philos;
+	t_program	*program;
 	t_params	*params;
 
+	program = (t_program *)malloc(sizeof(t_program));
 	params = (t_params *)malloc(sizeof(t_params));
  	if (!ft_error_check(argc, argv));
 		return (0);
 	ft_get_params(params, argv);
-	philos = ft_initialize(params);
-	
+	program->philos = ft_initialize(params);
 	return (0);
 }

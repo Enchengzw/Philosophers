@@ -39,17 +39,15 @@ void	ft_do_something(t_philo *philo, size_t miliseconds)
 
 void	philo_routine(t_philo *philo)
 {
-	while (!philo->dead)
+	if (philo->id % 2 == 0)
+		ft_usleep(1);
+	while (!(*philo->dead))
 	{
-		if (philo->id % 2 == 0)
-			ft_usleep(1);
-		ft_is_thinking(philo);
-		pthread_mutex_lock(philo->r_fork);
-		ft_is_taking_fork(philo);
-		pthread_mutex_lock(philo->l_fork);
-		ft_is_taking_fork(philo);
-		ft_do_something(philo, philo->time_to_eat);
-		ft_is_sleeping(philo);
-		ft_do_something(philo, philo->time_to_sleep);
+		if (!*(philo->dead))
+			ft_is_taking_fork(philo);
+		if (!*(philo->dead))
+			ft_is_eating(philo);
+		if (!*(philo->dead))
+			ft_is_sleeping(philo);
 	}
 }
