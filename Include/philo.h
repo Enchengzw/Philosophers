@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 12:58:18 by ezhou             #+#    #+#             */
-/*   Updated: 2024/02/07 17:35:24 by ezhou            ###   ########.fr       */
+/*   Updated: 2024/02/07 17:58:30 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ typedef struct s_program
 
 // PHILOSOPHER FUNCTIONS
 int					ft_error_check(int argc, char **argv);
-t_philo				*ft_initialize(t_params *params);
+void				ft_initialize(t_params *params, t_philo *philos);
 int					ft_initialize_forks(pthread_mutex_t *forks, int quantity);
 void				ft_do_something(t_philo *philo, size_t miliseconds);
 
@@ -95,8 +95,7 @@ void				ft_is_sleeping(t_philo *philo);
 void				ft_is_dead(t_philo *philo);
 void				ft_is_eating(t_philo *philo);
 
-
 // VERIFICATION
-
+void				printer(t_philo *philo);
 
 #endif

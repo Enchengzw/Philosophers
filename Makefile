@@ -6,7 +6,7 @@
 #    By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/11 16:53:06 by ezhou             #+#    #+#              #
-#    Updated: 2024/02/07 11:58:26 by ezhou            ###   ########.fr        #
+#    Updated: 2024/02/07 17:41:06 by ezhou            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ CFLAGS = -g -Wall -Wextra -Werror
 
 NAME = philo
 SRC = parse.c not_libft.c philo.c philo_routines.c cleaning.c initializer.c \
-terminal_print.c
+actions.c time.c tester.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)

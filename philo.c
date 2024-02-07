@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:49:02 by ezhou             #+#    #+#             */
-/*   Updated: 2024/02/07 17:37:28 by ezhou            ###   ########.fr       */
+/*   Updated: 2024/02/07 18:03:21 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,13 @@ int	main(int argc, char **argv)
 
 	program = (t_program *)malloc(sizeof(t_program));
 	params = (t_params *)malloc(sizeof(t_params));
- 	if (!ft_error_check(argc, argv));
+ 	if (!ft_error_check(argc, argv))
 		return (0);
 	ft_get_params(params, argv);
-	program->philos = ft_initialize(params);
+	ft_initialize(params, program->philos);
+	printf("%p ID\n", program->philos);
+	//printer(program->philos);
+	//printer(&program->philos[1]);
+	//printer(&program->philos[2]);
 	return (0);
 }
