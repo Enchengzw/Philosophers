@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:49:02 by ezhou             #+#    #+#             */
-/*   Updated: 2024/01/30 16:37:52 by ezhou            ###   ########.fr       */
+/*   Updated: 2024/02/07 12:16:50 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,19 @@ void	ft_get_params(t_params *params, char **argv)
 		params->eat_limit = ft_atoi(argv[5]);
 	else
 		params->eat_limit = INT_MAX;
+	params->time = get_current_time();
 }
 
 int	main(int argc, char **argv)
 {
-	t_philo		*philo_lst;
+	t_philo		*philos;
 	t_params	*params;
 
 	params = (t_params *)malloc(sizeof(t_params));
-	ft_get_params(params, argv);
  	if (!ft_error_check(argc, argv));
 		return (0);
-	ft_initialize(params, philo_lst); 
+	ft_get_params(params, argv);
+	philos = ft_initialize(params);
+	
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 12:58:18 by ezhou             #+#    #+#             */
-/*   Updated: 2024/01/30 17:07:21 by ezhou            ###   ########.fr       */
+/*   Updated: 2024/02/07 12:15:46 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
+# include <sys/time.h>
+# include <unistd.h>
+
+# define RED_TEXT "\x1b[31m"
+# define BLUE_TEXT "\x1b[34m"
+# define GREEN_TEXT "\x1b[32m"
+# define RESET_TEXT "\x1b[0m"
+# define ORANGE_TEXT "\x1b[38;2;255;165;0m"
 
 typedef struct s_params
 {
@@ -26,6 +34,7 @@ typedef struct s_params
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				eat_limit;
+	size_t			time;
 }					t_params;
 
 typedef struct s_philo
@@ -38,7 +47,7 @@ typedef struct s_philo
 	size_t			time_to_die;
 	size_t			time_to_eat;
 	size_t			time_to_sleep;
-	size_t			start_time;
+	int				initial_time;
 	int				num_of_philos;
 	int				num_times_to_eat;
 	int				*dead;
@@ -47,7 +56,6 @@ typedef struct s_philo
 	pthread_mutex_t	*write_lock;
 	pthread_mutex_t	*dead_lock;
 	pthread_mutex_t	*meal_lock;
-	struct s_philo	*next;
 }					t_philo;
 
 typedef struct s_program
@@ -59,15 +67,30 @@ typedef struct s_program
 	t_philo			*philos;
 }					t_program;
 
+// PHILOSOPHER FUNCTIONS
 int					ft_error_check(int argc, char **argv);
+t_philo				*ft_initialize(t_params *params);
+int					ft_initialize_forks(pthread_mutex_t *forks, int quantity);
+void				ft_do_something(t_philo *philo, size_t miliseconds);
+
+// CLEANING
+void				ft_clean_mutexes(pthread_mutex_t *forks, int index);
+
+// NOT LIBFT
 int					ft_isdigit(int c);
 void				*ft_calloc(size_t count, size_t size);
 long				ft_atoi(char *nptr);
 size_t				ft_strlen(const char *s);
+
+// TIME
 int					ft_usleep(size_t milliseconds);
 size_t				get_current_time(void);
-t_philo				*ft_lstnew(t_params *params);
-void				ft_initialize(t_params *params, t_philo *philo_lst);
-void				ft_lstadd_back(t_philo **lst, t_philo *new);
+size_t				ft_current_run_time(size_t old_time);
+
+// TERMINAL PRINTS
+void				ft_is_thinking(t_philo *philo);
+void				ft_is_taking_fork(t_philo *philo);
+void				ft_is_sleeping(t_philo *philo);
+void				ft_is_dead(t_philo *philo);
 
 #endif
