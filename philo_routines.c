@@ -22,14 +22,14 @@ void	ft_do_something(t_philo *philo, size_t miliseconds)
 	size_t	elapsed_time;
 
 	elapsed_time = 0;
-	while (!(philo->dead) && elapsed_time < miliseconds)
+	while (!*(philo->dead) && elapsed_time < miliseconds)
 	{
-		if (!(philo->dead) && (miliseconds - elapsed_time) > 10)
+		if (!*(philo->dead) && (miliseconds - elapsed_time) > 10)
 		{
 			ft_usleep(10);
 			elapsed_time += 10;
 		}
-		else if (!(philo->dead) && (miliseconds - elapsed_time) < 10)
+		else if (!*(philo->dead) && (miliseconds - elapsed_time) < 10)
 		{
 			ft_usleep(miliseconds - elapsed_time);
 			elapsed_time += (miliseconds - elapsed_time);

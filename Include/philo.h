@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 12:58:18 by ezhou             #+#    #+#             */
-/*   Updated: 2024/02/07 17:58:30 by ezhou            ###   ########.fr       */
+/*   Updated: 2024/02/08 16:46:44 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,38 +44,35 @@ typedef struct s_philo
 	int				id;
 	int				eating;
 	int				meals_eaten;
-	size_t			last_meal;
+	size_t			time_of_last_meal;
 	size_t			time_to_die;
 	size_t			time_to_eat;
 	size_t			time_to_sleep;
-	int				initial_time;
+	size_t			initial_time;
 	int				num_of_philos;
 	int				num_times_to_eat;
 	int				*dead;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	*write_lock;
-	pthread_mutex_t	*dead_lock;
-	pthread_mutex_t	*meal_lock;
 }					t_philo;
 
 typedef struct s_program
 {
 	int				dead_flag;
-	pthread_mutex_t	dead_lock;
-	pthread_mutex_t	meal_lock;
 	pthread_mutex_t	write_lock;
 	t_philo			*philos;
 }					t_program;
 
 // PHILOSOPHER FUNCTIONS
 int					ft_error_check(int argc, char **argv);
-void				ft_initialize(t_params *params, t_philo *philos);
+void				ft_initialize(t_params *params, t_philo **philos);
 int					ft_initialize_forks(pthread_mutex_t *forks, int quantity);
 void				ft_do_something(t_philo *philo, size_t miliseconds);
 
 // CLEANING
 void				ft_clean_mutexes(pthread_mutex_t *forks, int index);
+void				ft_clean_forks(t_philo *philo, int index);
 
 // NOT LIBFT
 int					ft_isdigit(int c);

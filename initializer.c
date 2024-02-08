@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 12:58:03 by ezhou             #+#    #+#             */
-/*   Updated: 2024/02/07 17:58:14 by ezhou            ###   ########.fr       */
+/*   Updated: 2024/02/08 16:50:49 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,8 @@ void	ft_initialize_one(t_philo *philo, t_params *params, int id,
 	philo->initial_time = params->time;
 	philo->eating = 0;
 	philo->meals_eaten = 0;
-	philo->last_meal = 0;
+	philo->time_of_last_meal = 0;
 	philo->write_lock = 0;
-	philo->dead_lock = 0;
-	philo->meal_lock = 0;
 	philo->dead = 0;
 	philo->thread = NULL;
 }
@@ -67,17 +65,15 @@ void	ft_initialize_struct(t_philo *philos, t_params *params,
 	}
 }
 
-void	ft_initialize(t_params *params, t_philo *philos)
+void	ft_initialize(t_params *params, t_philo **philos)
 {
 	pthread_mutex_t	*forks;
 
 	forks = (pthread_mutex_t *)ft_calloc(sizeof(pthread_mutex_t),
 			(params->quantity + 1));
-	philos = (t_philo *)ft_calloc(sizeof(t_philo), (params->quantity + 1));
+	*philos = (t_philo *)ft_calloc(sizeof(t_philo), (params->quantity + 1));
 	if (!ft_initialize_forks(forks, params->quantity))
-		return (free(philos), free(forks));
-	ft_initialize_struct(philos, params, forks);
-	printer(philos);
-	printer(&philos[1]);
-	printer(&philos[2]);
+		return (free(*philos), free(forks));
+	ft_initialize_struct(*philos, params, forks);
+	free(forks);
 }
