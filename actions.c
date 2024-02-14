@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:55:26 by ezhou             #+#    #+#             */
-/*   Updated: 2024/02/13 16:19:01 by ezhou            ###   ########.fr       */
+/*   Updated: 2024/02/14 16:44:31 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	ft_is_taking_fork(t_philo *philo)
 		return (pthread_mutex_unlock(philo->r_fork));
 	if (!*(philo->dead))
 	{
+		if (philo->l_fork == philo->r_fork)
+			return (ft_do_something(philo, philo->time_to_die), 0);
 		pthread_mutex_lock(philo->l_fork);
 		if (!*(philo->dead))
 			printf(GREEN_TEXT "%zu %d is taking a fork" RESET_TEXT "\n",

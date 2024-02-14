@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:05:16 by ezhou             #+#    #+#             */
-/*   Updated: 2024/01/30 13:40:50 by ezhou            ###   ########.fr       */
+/*   Updated: 2024/02/14 17:08:06 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	*ft_calloc(size_t count, size_t size)
 	return (list);
 }
 
-long	ft_atoi(char *nptr)
+int	ft_atoi(char *nptr)
 {
-	long	result;
+	int		result;
 	int		index;
 	int		minus;
 
@@ -50,4 +50,37 @@ long	ft_atoi(char *nptr)
 		result = result * 10 + (nptr[index++] - '0');
 	}
 	return (result * minus);
+}
+
+int	ft_safe_atoi(char *npr, int *flag)
+{
+	int		result;
+	char	*to_compare;
+	char	*aux;
+
+	if (*npr == '+')
+		aux = npr + 1;
+	else
+		aux = npr;
+	result = ft_atoi(npr);
+	to_compare = ft_itoa(result);
+	if (ft_strncmp(aux, to_compare, ft_strlen(aux)) == 0)
+		return (free(to_compare), result);
+	else
+	{
+		*flag = 1;
+		ft_putstr_fd("Overflow detected\n", 2);
+		free(to_compare);
+		return (0);
+	}
+}
+
+size_t	ft_strlen(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }

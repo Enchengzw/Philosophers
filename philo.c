@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:49:02 by ezhou             #+#    #+#             */
-/*   Updated: 2024/02/13 17:30:14 by ezhou            ###   ########.fr       */
+/*   Updated: 2024/02/14 17:07:49 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,31 @@ int	ft_set_program_variables(t_program *program, t_params *params)
 	return (1);
 }
 
-void	ft_get_params(t_params *params, char **argv)
+int	ft_get_params(t_params *params, char **argv)
 {
-	params->quantity = ft_atoi(argv[1]);
-	params->time_to_die = ft_atoi(argv[2]);
-	params->time_to_eat = ft_atoi(argv[3]);
-	params->time_to_sleep = ft_atoi(argv[4]);
+	int	flag;
+
+	flag = 0;
+	params->quantity = ft_safe_atoi(argv[1], &flag);
+	if (flag || params->quantity == 0)
+		return (0);
+	params->time_to_die = ft_safe_atoi(argv[2], &flag);
+	if (flag)
+		return (0);
+	params->time_to_eat = ft_safe_atoi(argv[3], &flag);
+	if (flag)
+		return (0);
+	params->time_to_sleep = ft_safe_atoi(argv[4], &flag);
+	if (flag)
+		return (0);
 	if (argv[5])
-		params->eat_limit = ft_atoi(argv[5]);
+		params->eat_limit = ft_safe_atoi(argv[5], &flag);
 	else
 		params->eat_limit = INT_MAX;
+	if (flag)
+		return (0);
 	params->time = get_current_time();
+	return (1);
 }
 
 void	ft_join_philos(t_program *program)
@@ -92,8 +106,9 @@ int	main(int argc, char **argv)
 	params = (t_params *)malloc(sizeof(t_params));
 	if (!ft_error_check(argc, argv))
 		return (free(program), free(params), 0);
-	ft_get_params(params, argv);
-	program->ft_initialize(params, &program->philos);
+	if (!ft_get_params(params, argv))
+		return (free(program), free(params), printf("Argument error\n"), 0);
+	program->forks = ft_initialize(params, &program->philos);
 	if (!ft_set_program_variables(program, params))
 		return (ft_free_all(program, params), 0);
 	program->quantity = params->quantity;

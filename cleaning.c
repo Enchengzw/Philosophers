@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 12:53:42 by ezhou             #+#    #+#             */
-/*   Updated: 2024/02/13 16:19:26 by ezhou            ###   ########.fr       */
+/*   Updated: 2024/02/14 16:43:34 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	ft_clean_forks(t_philo *philo, t_params *params)
 void	ft_free_all(t_program *program, t_params *param)
 {
 	ft_clean_forks(program->philos, param);
+	free(program->forks);
 	free(program->philos);
 	free(param);
 	free(program);

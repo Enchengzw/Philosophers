@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 12:58:03 by ezhou             #+#    #+#             */
-/*   Updated: 2024/02/13 17:27:48 by ezhou            ###   ########.fr       */
+/*   Updated: 2024/02/14 16:42:13 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ pthread_mutex_t	*ft_initialize(t_params *params, t_philo **philos)
 			(params->quantity));
 	*philos = (t_philo *)ft_calloc(sizeof(t_philo), (params->quantity + 1));
 	if (!ft_initialize_forks(forks, params->quantity))
-		return (free(*philos), free(forks), 0);
+		return (free(*philos), free(forks), NULL);
 	ft_initialize_struct(*philos, params, forks);
 	return (forks);
 }

@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 12:58:18 by ezhou             #+#    #+#             */
-/*   Updated: 2024/02/13 17:29:40 by ezhou            ###   ########.fr       */
+/*   Updated: 2024/02/14 17:07:21 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ typedef struct s_program
 	int				quantity;
 	int				num_times_to_eat;
 	t_philo			*philos;
-	pthread_mutex_t *forks;
+	pthread_mutex_t	*forks;
 }					t_program;
 
 // PHILOSOPHER FUNCTIONS
@@ -83,8 +83,14 @@ void				ft_free_all(t_program *program, t_params *param);
 // NOT LIBFT
 int					ft_isdigit(int c);
 void				*ft_calloc(size_t count, size_t size);
-long				ft_atoi(char *nptr);
+int					ft_atoi(char *nptr);
 size_t				ft_strlen(const char *s);
+char				*ft_itoa(int ln);
+void				ft_putstr_fd(char const *s, int fd);
+int					ft_strncmp(const char *s1, const char *s2, size_t n);
+int					ft_safe_atoi(char *npr, int *flag);
+void				ft_putchar_fd(char c, int fd);
+void				*ft_memset(void *s, int c, size_t n);
 
 // TIME
 int					ft_usleep(size_t milliseconds);
