@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 12:58:18 by ezhou             #+#    #+#             */
-/*   Updated: 2024/02/08 16:46:44 by ezhou            ###   ########.fr       */
+/*   Updated: 2024/02/13 17:29:40 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ typedef struct s_philo
 	size_t			time_to_eat;
 	size_t			time_to_sleep;
 	size_t			initial_time;
-	int				num_of_philos;
-	int				num_times_to_eat;
 	int				*dead;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
@@ -61,18 +59,26 @@ typedef struct s_program
 {
 	int				dead_flag;
 	pthread_mutex_t	write_lock;
+	pthread_t		handler;
+	int				quantity;
+	int				num_times_to_eat;
 	t_philo			*philos;
+	pthread_mutex_t *forks;
 }					t_program;
 
 // PHILOSOPHER FUNCTIONS
 int					ft_error_check(int argc, char **argv);
-void				ft_initialize(t_params *params, t_philo **philos);
+pthread_mutex_t		*ft_initialize(t_params *params, t_philo **philos);
 int					ft_initialize_forks(pthread_mutex_t *forks, int quantity);
 void				ft_do_something(t_philo *philo, size_t miliseconds);
+void				*ft_handler(void *arg);
+void				*ft_philo_routine(void *arg);
+void				ft_create_handler(t_program *program);
 
 // CLEANING
 void				ft_clean_mutexes(pthread_mutex_t *forks, int index);
-void				ft_clean_forks(t_philo *philo, int index);
+void				ft_clean_forks(t_philo *philo, t_params *params);
+void				ft_free_all(t_program *program, t_params *param);
 
 // NOT LIBFT
 int					ft_isdigit(int c);
@@ -87,7 +93,7 @@ size_t				ft_current_run_time(size_t old_time);
 
 // ACTIONS
 void				ft_is_thinking(t_philo *philo);
-void				ft_is_taking_fork(t_philo *philo);
+int					ft_is_taking_fork(t_philo *philo);
 void				ft_is_sleeping(t_philo *philo);
 void				ft_is_dead(t_philo *philo);
 void				ft_is_eating(t_philo *philo);

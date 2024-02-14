@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 12:16:44 by ezhou             #+#    #+#             */
-/*   Updated: 2024/02/06 17:37:23by ezhou            ###   ########.fr       */
+/*   Updated: 2024/02/13 17:14:25 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_do_something(t_philo *philo, size_t miliseconds)
 	elapsed_time = 0;
 	while (!*(philo->dead) && elapsed_time < miliseconds)
 	{
-		if (!*(philo->dead) && (miliseconds - elapsed_time) > 10)
+		if (!*(philo->dead) && (miliseconds - elapsed_time) >= 10)
 		{
 			ft_usleep(10);
 			elapsed_time += 10;
@@ -37,17 +37,25 @@ void	ft_do_something(t_philo *philo, size_t miliseconds)
 	}
 }
 
-void	philo_routine(t_philo *philo)
+void	*ft_philo_routine(void *arg)
 {
+	t_philo	*philo;
+
+	philo = arg;
 	if (philo->id % 2 == 0)
-		ft_usleep(1);
+		usleep(500);
 	while (!(*philo->dead))
 	{
 		if (!*(philo->dead))
 			ft_is_taking_fork(philo);
 		if (!*(philo->dead))
+		{
 			ft_is_eating(philo);
+		}
 		if (!*(philo->dead))
+		{
 			ft_is_sleeping(philo);
+		}
 	}
+	return (0);
 }

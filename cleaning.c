@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 12:53:42 by ezhou             #+#    #+#             */
-/*   Updated: 2024/02/08 17:18:28 by ezhou            ###   ########.fr       */
+/*   Updated: 2024/02/13 16:19:26 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,26 @@ void	ft_clean_mutexes(pthread_mutex_t *forks, int index)
 	}
 }
 
-void	ft_clean_forks(t_philo *philo, int index)
+void	ft_clean_forks(t_philo *philo, t_params *params)
 {
-	while (index > 0)
+	int	index;
+
+	while (index < params->quantity)
 	{
-		if (pthread_mutex_destroy(philo->r_fork) != 0)
+		if (pthread_mutex_destroy(philo[index].r_fork) != 0)
 		{
 			printf("Mutex destruction failure\n");
 			return ;
 		}
-		index--;
+		printf("index %d quantity %d\n", index, params->quantity);
+		index++;
 	}
 }
 
-void	ft_free_all(t_program *program, t_param *param)
+void	ft_free_all(t_program *program, t_params *param)
 {
-	ft_clean_forks(program->philos, param->quantity);
+	ft_clean_forks(program->philos, param);
 	free(program->philos);
-	free(params);
+	free(param);
 	free(program);
 }
