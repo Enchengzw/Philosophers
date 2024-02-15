@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:49:02 by ezhou             #+#    #+#             */
-/*   Updated: 2024/02/14 17:07:49 by ezhou            ###   ########.fr       */
+/*   Updated: 2024/02/15 13:18:26 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ int	ft_set_program_variables(t_program *program, t_params *params)
 
 	index = 0;
 	(program->philos)->dead = &program->dead_flag;
-	if (pthread_mutex_init(&((program->write_lock)), NULL) != 0)
+	if (pthread_mutex_init(&((program->meals_lock)), NULL) != 0)
 		return (ft_clean_forks(program->philos, params), 0);
 	while (index < params->quantity)
 	{
 		((program->philos)[index]).dead = &program->dead_flag;
-		((program->philos)[index]).write_lock = &program->write_lock;
+		((program->philos)[index]).meals_lock = &program->meals_lock;
 		index++;
 	}
 	return (1);
@@ -35,22 +35,22 @@ int	ft_get_params(t_params *params, char **argv)
 
 	flag = 0;
 	params->quantity = ft_safe_atoi(argv[1], &flag);
-	if (flag || params->quantity == 0)
+	if (flag || params->quantity <= 0)
 		return (0);
 	params->time_to_die = ft_safe_atoi(argv[2], &flag);
-	if (flag)
+	if (flag || params->time_to_die <= 0)
 		return (0);
 	params->time_to_eat = ft_safe_atoi(argv[3], &flag);
-	if (flag)
+	if (flag || params->time_to_eat <= 0)
 		return (0);
 	params->time_to_sleep = ft_safe_atoi(argv[4], &flag);
-	if (flag)
+	if (flag || params->time_to_sleep <= 0)
 		return (0);
 	if (argv[5])
 		params->eat_limit = ft_safe_atoi(argv[5], &flag);
 	else
 		params->eat_limit = INT_MAX;
-	if (flag)
+	if (flag || params->eat_limit <= 0)
 		return (0);
 	params->time = get_current_time();
 	return (1);

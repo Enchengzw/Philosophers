@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:55:26 by ezhou             #+#    #+#             */
-/*   Updated: 2024/02/14 16:44:31 by ezhou            ###   ########.fr       */
+/*   Updated: 2024/02/15 13:19:16 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_is_thinking(t_philo *philo)
 		ft_current_run_time(philo->initial_time), philo->id);
 }
 
-int	ft_is_taking_fork(t_philo *philo)
+int	ft_is_taking_fork_r(t_philo *philo)
 {
 	if (!*(philo->dead))
 	{
@@ -52,8 +52,10 @@ void	ft_is_eating(t_philo *philo)
 	printf(DARK_GREEN_TEXT "%zu %d is eating" RESET_TEXT "\n",
 		ft_current_run_time(philo->initial_time), philo->id);
 	ft_do_something(philo, philo->time_to_eat);
+	pthread_mutex_lock(philo->meals_lock);
 	philo->meals_eaten += 1;
 	philo->time_of_last_meal = get_current_time();
+	pthread_mutex_unlock(philo->meals_lock);
 	pthread_mutex_unlock(philo->r_fork);
 	pthread_mutex_unlock(philo->l_fork);
 }

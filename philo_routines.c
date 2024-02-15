@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 12:16:44 by ezhou             #+#    #+#             */
-/*   Updated: 2024/02/13 17:14:25 by ezhou            ###   ########.fr       */
+/*   Updated: 2024/02/14 17:42:40 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,9 @@ void	*ft_philo_routine(void *arg)
 	while (!(*philo->dead))
 	{
 		if (!*(philo->dead))
-			ft_is_taking_fork(philo);
+		{
+			ft_is_taking_fork_r(philo);
+		}
 		if (!*(philo->dead))
 		{
 			ft_is_eating(philo);
