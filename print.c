@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   time.c                                             :+:      :+:    :+:   */
+/*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/29 17:45:56 by ezhou             #+#    #+#             */
-/*   Updated: 2024/02/15 18:51:21 by ezhou            ###   ########.fr       */
+/*   Created: 2024/02/15 16:11:28 by ezhou             #+#    #+#             */
+/*   Updated: 2024/02/15 18:10:44 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_usleep(size_t milliseconds)
+void	ft_fork_print(t_philo *philo)
 {
-	size_t	start;
-
-	start = get_current_time();
-	while ((get_current_time() - start) < milliseconds)
-	{
-		usleep(500);
-	}
-	return (0);
+	printf(GREEN_TEXT "%zu %d is taking a fork" RESET_TEXT "\n",
+		ft_current_run_time(philo->initial_time), philo->id);
 }
 
-size_t	get_current_time(void)
+void	ft_0(void)
 {
-	struct timeval	time;
-
-	if (gettimeofday(&time, NULL) == -1)
-		write(2, "gettimeofday() error\n", 22);
-	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+	return ;
 }

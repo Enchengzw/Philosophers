@@ -6,11 +6,11 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 17:02:34 by ezhou             #+#    #+#             */
-/*   Updated: 2024/02/14 17:03:24 by ezhou            ###   ########.fr       */
+/*   Updated: 2024/02/15 13:28:58 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <philo.h>
+#include "philo.h"
 
 void	ft_putchar_fd(char c, int fd)
 {

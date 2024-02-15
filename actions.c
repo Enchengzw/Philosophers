@@ -6,11 +6,11 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:55:26 by ezhou             #+#    #+#             */
-/*   Updated: 2024/02/15 13:19:16 by ezhou            ###   ########.fr       */
+/*   Updated: 2024/02/15 18:05:08 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <philo.h>
+#include "philo.h"
 
 void	ft_is_thinking(t_philo *philo)
 {
@@ -18,37 +18,9 @@ void	ft_is_thinking(t_philo *philo)
 		ft_current_run_time(philo->initial_time), philo->id);
 }
 
-int	ft_is_taking_fork_r(t_philo *philo)
-{
-	if (!*(philo->dead))
-	{
-		pthread_mutex_lock(philo->r_fork);
-		if (!*(philo->dead))
-			printf(GREEN_TEXT "%zu %d is taking a fork" RESET_TEXT "\n",
-				ft_current_run_time(philo->initial_time), philo->id);
-	}
-	if (*(philo->dead))
-		return (pthread_mutex_unlock(philo->r_fork));
-	if (!*(philo->dead))
-	{
-		if (philo->l_fork == philo->r_fork)
-			return (ft_do_something(philo, philo->time_to_die), 0);
-		pthread_mutex_lock(philo->l_fork);
-		if (!*(philo->dead))
-			printf(GREEN_TEXT "%zu %d is taking a fork" RESET_TEXT "\n",
-				ft_current_run_time(philo->initial_time), philo->id);
-	}
-	if (*(philo->dead))
-	{
-		pthread_mutex_unlock(philo->r_fork);
-		pthread_mutex_unlock(philo->l_fork);
-		return (0);
-	}
-	return (0);
-}
-
 void	ft_is_eating(t_philo *philo)
 {
+	pthread_mutex_unlock(philo->dead_lock);
 	printf(DARK_GREEN_TEXT "%zu %d is eating" RESET_TEXT "\n",
 		ft_current_run_time(philo->initial_time), philo->id);
 	ft_do_something(philo, philo->time_to_eat);
@@ -66,11 +38,18 @@ void	ft_is_sleeping(t_philo *philo)
 		printf(ORANGE_TEXT "%zu %d is sleeping" RESET_TEXT "\n",
 			ft_current_run_time(philo->initial_time), philo->id);
 	if (!*(philo->dead))
+	{
+		pthread_mutex_unlock(philo->dead_lock);
 		ft_do_something(philo, philo->time_to_sleep);
+	}
+	else
+		pthread_mutex_unlock(philo->dead_lock);
+	pthread_mutex_lock(philo->dead_lock);
 	if (!*(philo->dead))
 	{
 		ft_is_thinking(philo);
 	}
+	pthread_mutex_unlock(philo->dead_lock);
 }
 
 void	ft_is_dead(t_philo *philo)

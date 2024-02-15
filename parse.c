@@ -6,11 +6,11 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 12:57:47 by ezhou             #+#    #+#             */
-/*   Updated: 2024/01/29 17:09:22 by ezhou            ###   ########.fr       */
+/*   Updated: 2024/02/15 13:28:58 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <philo.h>
+#include "philo.h"
 
 int	ft_check_number_argument(int argc)
 {

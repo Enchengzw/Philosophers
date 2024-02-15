@@ -6,11 +6,11 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:49:02 by ezhou             #+#    #+#             */
-/*   Updated: 2024/02/15 13:18:26 by ezhou            ###   ########.fr       */
+/*   Updated: 2024/02/15 15:59:04 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <philo.h>
+#include "philo.h"
 
 int	ft_set_program_variables(t_program *program, t_params *params)
 {
@@ -20,10 +20,13 @@ int	ft_set_program_variables(t_program *program, t_params *params)
 	(program->philos)->dead = &program->dead_flag;
 	if (pthread_mutex_init(&((program->meals_lock)), NULL) != 0)
 		return (ft_clean_forks(program->philos, params), 0);
+	if (pthread_mutex_init(&((program->dead_lock)), NULL) != 0)
+		return (ft_clean_forks(program->philos, params), 0);
 	while (index < params->quantity)
 	{
 		((program->philos)[index]).dead = &program->dead_flag;
 		((program->philos)[index]).meals_lock = &program->meals_lock;
+		((program->philos)[index]).dead_lock = &program->dead_lock;
 		index++;
 	}
 	return (1);

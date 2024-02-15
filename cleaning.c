@@ -6,11 +6,11 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 12:53:42 by ezhou             #+#    #+#             */
-/*   Updated: 2024/02/14 16:43:34 by ezhou            ###   ########.fr       */
+/*   Updated: 2024/02/15 13:28:58 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <philo.h>
+#include "philo.h"
 
 void	ft_clean_mutexes(pthread_mutex_t *forks, int index)
 {

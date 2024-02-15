@@ -6,11 +6,11 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 16:51:58 by ezhou             #+#    #+#             */
-/*   Updated: 2024/02/14 17:02:25 by ezhou            ###   ########.fr       */
+/*   Updated: 2024/02/15 13:28:58 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <philo.h>
+#include "philo.h"
 
 char	*ft_strnew(size_t size)
 {

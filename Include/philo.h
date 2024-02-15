@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 12:58:18 by ezhou             #+#    #+#             */
-/*   Updated: 2024/02/15 13:18:23 by ezhou            ###   ########.fr       */
+/*   Updated: 2024/02/15 18:08:39 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_philo
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	*meals_lock;
+	pthread_mutex_t	*dead_lock;
 }					t_philo;
 
 typedef struct s_program
@@ -64,6 +65,7 @@ typedef struct s_program
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	meals_lock;
+	pthread_mutex_t	dead_lock;
 }					t_program;
 
 // PHILOSOPHER FUNCTIONS
@@ -74,6 +76,7 @@ void				ft_do_something(t_philo *philo, size_t miliseconds);
 void				*ft_handler(void *arg);
 void				*ft_philo_routine(void *arg);
 void				ft_create_handler(t_program *program);
+void				ft_fork_print(t_philo *philo);
 
 // CLEANING
 void				ft_clean_mutexes(pthread_mutex_t *forks, int index);
@@ -99,12 +102,14 @@ size_t				ft_current_run_time(size_t old_time);
 
 // ACTIONS
 void				ft_is_thinking(t_philo *philo);
-int					ft_is_taking_fork_r(t_philo *philo);
+void				ft_is_taking_r_fork(t_philo *philo);
+void				ft_is_taking_l_fork(t_philo *philo);
 void				ft_is_sleeping(t_philo *philo);
 void				ft_is_dead(t_philo *philo);
 void				ft_is_eating(t_philo *philo);
 
 // VERIFICATION
 void				printer(t_philo *philo);
+void				ft_0(void);
 
 #endif

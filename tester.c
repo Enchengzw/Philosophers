@@ -6,11 +6,11 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:35:13 by ezhou             #+#    #+#             */
-/*   Updated: 2024/02/07 17:52:23 by ezhou            ###   ########.fr       */
+/*   Updated: 2024/02/15 13:28:58 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <philo.h>
+#include "philo.h"
 
 void	printer(t_philo *philo)
 {
