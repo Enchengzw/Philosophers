@@ -6,11 +6,11 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 11:53:26 by ezhou             #+#    #+#             */
-/*   Updated: 2024/02/15 18:00:54 by ezhou            ###   ########.fr       */
+/*   Updated: 2024/02/16 12:36:18 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include <philo.h>
 
 void	ft_check(t_program *program, t_philo *philo, int *index)
 {

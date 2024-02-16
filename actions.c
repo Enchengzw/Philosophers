@@ -6,11 +6,11 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:55:26 by ezhou             #+#    #+#             */
-/*   Updated: 2024/02/15 18:05:08 by ezhou            ###   ########.fr       */
+/*   Updated: 2024/02/16 12:36:18 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include <philo.h>
 
 void	ft_is_thinking(t_philo *philo)
 {

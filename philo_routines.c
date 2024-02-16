@@ -6,11 +6,11 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 12:16:44 by ezhou             #+#    #+#             */
-/*   Updated: 2024/02/15 18:10:33 by ezhou            ###   ########.fr       */
+/*   Updated: 2024/02/16 12:36:18 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include <philo.h>
 
 size_t	ft_current_run_time(size_t old_time)
 {

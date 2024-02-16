@@ -6,11 +6,11 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:49:02 by ezhou             #+#    #+#             */
-/*   Updated: 2024/02/15 15:59:04 by ezhou            ###   ########.fr       */
+/*   Updated: 2024/02/16 12:36:18 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include <philo.h>
 
 int	ft_set_program_variables(t_program *program, t_params *params)
 {

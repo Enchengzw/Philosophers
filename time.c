@@ -6,11 +6,11 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 17:45:56 by ezhou             #+#    #+#             */
-/*   Updated: 2024/02/15 18:51:21 by ezhou            ###   ########.fr       */
+/*   Updated: 2024/02/16 12:36:18 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include <philo.h>
 
 int	ft_usleep(size_t milliseconds)
 {

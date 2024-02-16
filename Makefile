@@ -6,7 +6,7 @@
 #    By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/11 16:53:06 by ezhou             #+#    #+#              #
-#    Updated: 2024/02/15 18:04:43 by ezhou            ###   ########.fr        #
+#    Updated: 2024/02/16 12:37:14 by ezhou            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ RM = rm -f
 INCLUDE = Include/
 
 CC = gcc 
-CFLAGS = -g -Wall -Wextra -Werror -fsanitize=thread
+CFLAGS = -Wall -Wextra -Werror -pthread -g 
 
 NAME = philo
 SRC = parse.c not_libft.c not_libft2.c not_libft3.c philo.c philo_routines.c cleaning.c initializer.c \

@@ -6,11 +6,11 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 12:53:42 by ezhou             #+#    #+#             */
-/*   Updated: 2024/02/15 13:28:58 by ezhou            ###   ########.fr       */
+/*   Updated: 2024/02/16 12:36:18 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include <philo.h>
 
 void	ft_clean_mutexes(pthread_mutex_t *forks, int index)
 {
@@ -29,6 +29,7 @@ void	ft_clean_forks(t_philo *philo, t_params *params)
 {
 	int	index;
 
+	index = 0;
 	while (index < params->quantity)
 	{
 		if (pthread_mutex_destroy(philo[index].r_fork) != 0)
@@ -36,7 +37,6 @@ void	ft_clean_forks(t_philo *philo, t_params *params)
 			printf("Mutex destruction failure\n");
 			return ;
 		}
-		printf("index %d quantity %d\n", index, params->quantity);
 		index++;
 	}
 }
