@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 12:53:42 by ezhou             #+#    #+#             */
-/*   Updated: 2024/02/16 12:36:18 by ezhou            ###   ########.fr       */
+/*   Updated: 2024/02/16 17:02:30 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@ void	ft_clean_forks(t_philo *philo, t_params *params)
 void	ft_free_all(t_program *program, t_params *param)
 {
 	ft_clean_forks(program->philos, param);
+	if (pthread_mutex_destroy(&(program->dead_lock)) != 0)
+		printf("Mutex destruction failure\n");
+	if (pthread_mutex_destroy(&(program->meals_lock)) != 0)
+		printf("Mutex destruction failure\n");
 	free(program->forks);
 	free(program->philos);
 	free(param);

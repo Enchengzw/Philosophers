@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 12:16:44 by ezhou             #+#    #+#             */
-/*   Updated: 2024/02/16 12:36:18 by ezhou            ###   ########.fr       */
+/*   Updated: 2024/02/16 16:39:51 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	*ft_philo_routine(void *arg)
 			ft_is_taking_r_fork(philo);
 		else
 			pthread_mutex_unlock(philo->dead_lock);
-		if (pthread_mutex_lock(philo->dead_lock) && !*(philo->dead))
+		if (!pthread_mutex_lock(philo->dead_lock) && !*(philo->dead))
 			ft_is_taking_l_fork(philo);
 		else
 			pthread_mutex_unlock(philo->dead_lock);
